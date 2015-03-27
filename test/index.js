@@ -1,18 +1,71 @@
 var should = require("should");
-var largestRect = require("../index");
+var findLargestRect = require("../index");
+var testPolygons = require("./polygons.json");
 
 describe("largest-rect-in-poly", function() {
-	it("should find the largest rect in a simple rectangle", function() {
-		var simpleRectangle = [[1, 1], [1, 5], [5, 5], [5, 1]];
-		var results = largestRect(simpleRectangle);
-		should(results).have.lengthOf(3);
-		var rect = results[0];
-		should(rect).have.property("cx", 3);
-		should(rect).have.property("cy", 3);
-		should(rect).have.property("width").greaterThan(3.9);
-		should(rect).have.property("height").greaterThan(3.9);
-		should(rect).have.property("angle", -90);
-		var area = results[1];
-		should(area).be.greaterThan(15);
+	it("should find the largest rectangle in a triangle",function(){
+		// diffcult to calculate triangles center.
+		var polygon =[[0,0],[0,30],[40,0]];
+		var rectangle = findLargestRect(polygon);
+		rectangle[0].should.have.property("cx");
+		rectangle[0].should.have.property("cy");
+		rectangle[0].should.have.property("width");
+		rectangle[0].should.have.property("height");
+		var rectArea = rectangle[1];
+		rectArea.should.be.within(250,300);
+	});
+	it("should find the largest rectangle in a perfect square",function(){
+		var polygon =[[0,0],[0,1000],[1000,1000],[1000,0]];
+		var rectangle = findLargestRect(polygon);
+		rectangle[0].should.have.property("cx",500);
+		rectangle[0].should.have.property("cy",500);
+		var width = rectangle[0].width;
+		var height = rectangle[0].height;
+		width.should.be.within(999,1001);
+		height.should.be.within(999,1001);
+
+	});
+	it("should find the largest rectangle in a perfect rectangle",function(){
+		var polygon =[[0,0],[0,100],[50,100],[50,0]];
+		var rectangle = findLargestRect(polygon);
+		rectangle[0].should.have.property("cx",25);
+		rectangle[0].should.have.property("cy",50);
+		rectangle[0].should.have.property("width");
+		rectangle[0].should.have.property("height");
+		var width = rectangle[0].width;
+		var height = rectangle[0].height;
+		width.should.be.within(99,101);
+		height.should.be.within(49,51);
+
+	});
+	it("should find the largest rectangle in a not very complex polygon",function(){
+		var polygon = testPolygons.simple;
+		var rectangle = findLargestRect(polygon);
+		rectangle[0].should.have.property("cx");
+		rectangle[0].should.have.property("cy");
+		rectangle[0].should.have.property("width");
+		rectangle[0].should.have.property("height");
+		var rectArea = rectangle[1];
+		rectArea.should.be.within(330000,360000);
+	});
+	it("should find largest rectangle in a medium complex polygon",function(){
+		var polygon = testPolygons.medium;
+		var rectangle = findLargestRect(polygon);
+		rectangle[0].should.have.property("cx");
+		rectangle[0].should.have.property("cy");
+		rectangle[0].should.have.property("width");
+		rectangle[0].should.have.property("height");
+		var rectArea = rectangle[1];
+		rectArea.should.be.within(79000,82000);
+	});
+	it("should find largest rectangle in a pretty complex polygon",function(){
+		var polygon = testPolygons.complex;
+		var rectangle = findLargestRect(polygon);
+		rectangle[0].should.have.property("cx");
+		rectangle[0].should.have.property("cy");
+		rectangle[0].should.have.property("width");
+		rectangle[0].should.have.property("height");
+		var rectArea = rectangle[1];
+		rectArea.should.be.within(190000,220000);
 	});
 });
