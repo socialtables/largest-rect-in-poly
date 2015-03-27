@@ -12,7 +12,7 @@ describe("largest-rect-in-poly", function() {
 		rectangle[0].should.have.property("width");
 		rectangle[0].should.have.property("height");
 		var rectArea = rectangle[1];
-		rectArea.should.be.within(250,300);
+		rectArea.should.be.within(240, 300);
 	});
 	it("should find the largest rectangle in a perfect square",function(){
 		var polygon =[[0,0],[0,1000],[1000,1000],[1000,0]];
@@ -21,8 +21,8 @@ describe("largest-rect-in-poly", function() {
 		rectangle[0].should.have.property("cy",500);
 		var width = rectangle[0].width;
 		var height = rectangle[0].height;
-		width.should.be.within(999,1001);
-		height.should.be.within(999,1001);
+		width.should.be.within(980, 1020);
+		height.should.be.within(980, 1020);
 
 	});
 	it("should find the largest rectangle in a perfect rectangle",function(){
@@ -34,8 +34,8 @@ describe("largest-rect-in-poly", function() {
 		rectangle[0].should.have.property("height");
 		var width = rectangle[0].width;
 		var height = rectangle[0].height;
-		width.should.be.within(99,101);
-		height.should.be.within(49,51);
+		width.should.be.within(99, 101);
+		height.should.be.within(49, 51);
 
 	});
 	it("should find the largest rectangle in a not very complex polygon",function(){
@@ -46,7 +46,7 @@ describe("largest-rect-in-poly", function() {
 		rectangle[0].should.have.property("width");
 		rectangle[0].should.have.property("height");
 		var rectArea = rectangle[1];
-		rectArea.should.be.within(330000,360000);
+		rectArea.should.be.within(300000, 360000);
 	});
 	it("should find largest rectangle in a medium complex polygon",function(){
 		var polygon = testPolygons.medium;
@@ -56,7 +56,7 @@ describe("largest-rect-in-poly", function() {
 		rectangle[0].should.have.property("width");
 		rectangle[0].should.have.property("height");
 		var rectArea = rectangle[1];
-		rectArea.should.be.within(79000,82000);
+		rectArea.should.be.within(70000, 82000);
 	});
 	it("should find largest rectangle in a pretty complex polygon",function(){
 		var polygon = testPolygons.complex;
@@ -66,6 +66,6 @@ describe("largest-rect-in-poly", function() {
 		rectangle[0].should.have.property("width");
 		rectangle[0].should.have.property("height");
 		var rectArea = rectangle[1];
-		rectArea.should.be.within(190000,220000);
+		rectArea.should.be.within(180000, 220000);
 	});
 });
