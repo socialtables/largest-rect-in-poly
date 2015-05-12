@@ -38,34 +38,30 @@ describe("largest-rect-in-poly", function() {
 		height.should.be.within(49, 51);
 
 	});
-	it("should find the largest rectangle in a not very complex polygon",function(){
-		var polygon = testPolygons.simple;
-		var rectangle = findLargestRect(polygon);
-		rectangle[0].should.have.property("cx");
-		rectangle[0].should.have.property("cy");
-		rectangle[0].should.have.property("width");
-		rectangle[0].should.have.property("height");
-		var rectArea = rectangle[1];
-		rectArea.should.be.within(300000, 360000);
-	});
-	it("should find largest rectangle in a medium complex polygon",function(){
-		var polygon = testPolygons.medium;
-		var rectangle = findLargestRect(polygon);
-		rectangle[0].should.have.property("cx");
-		rectangle[0].should.have.property("cy");
-		rectangle[0].should.have.property("width");
-		rectangle[0].should.have.property("height");
-		var rectArea = rectangle[1];
-		rectArea.should.be.within(70000, 82000);
-	});
-	it("should find largest rectangle in a pretty complex polygon",function(){
-		var polygon = testPolygons.complex;
-		var rectangle = findLargestRect(polygon);
-		rectangle[0].should.have.property("cx");
-		rectangle[0].should.have.property("cy");
-		rectangle[0].should.have.property("width");
-		rectangle[0].should.have.property("height");
-		var rectArea = rectangle[1];
-		rectArea.should.be.within(180000, 220000);
+
+	var variants = [
+		{
+			polygon: "simple",
+			bounds: [300000, 360000]
+		}, {
+			polygon: "medium",
+			bounds: [70000, 82000]
+		}, {
+			polygon: "complex",
+			bounds: [180000, 220000]
+		}
+	];
+
+	variants.forEach(function(v) {
+		it("should find the largest rectangle in a " + v.polygon + " polygon", function() {
+			var polygon = testPolygons[v.polygon];
+			var rectangle = findLargestRect(polygon);
+			should(rectangle[0]).have.property("cx");
+			should(rectangle[0]).have.property("cy");
+			should(rectangle[0]).have.property("width");
+			should(rectangle[0]).have.property("height");
+			var rectArea = rectangle[1];
+			rectArea.should.be.within(v.bounds[0], v.bounds[1]);
+		});
 	});
 });
