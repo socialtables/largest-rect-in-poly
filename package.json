@@ -1,6 +1,6 @@
 {
   "name": "largest-rect-in-poly",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Given a polygon (array of x, y coordinates) finds the largest contained rectangle",
   "main": "index.js",
   "dependencies": {
