@@ -350,7 +350,6 @@ module.exports = function(poly, options) {
 			}
 		}
 	}
-	console.log("fart:", ref, ref1, poly, centroid, origins);
 	if (options.vdebug) {
 		events.push({
 			type: 'origins',

@@ -56,29 +56,29 @@ describe("largest-rect-in-poly", function() {
 	var variants = [
 		{
 			polygon: "simple",
-			bounds: [300000, 360000]
-		},
-		{
+			bounds: [855000, 885000],
+			tries: 250
+		}, {
 			polygon: "largerRectangle",
-			bounds: [360000, 360000]
-		},
-		/* {
+			bounds: [230000, 250000]
+		}, {
 				polygon: "medium",
-			bounds: [70000, 82000]
+			bounds: [90500, 95000]
 		}, {
 			polygon: "complex",
-			bounds: [180000, 220000]
+			bounds: [300500, 335000],
+			tries: 40
 		}, {
 			polygon: "veryComplex",
-			bounds: [180000, 220000]
-		}*/
+			bounds: [21000, 25000]
+		}
 	];
 
-	describe.only("from polygons.json:", function() {
+	describe("from polygons.json:", function() {
 		variants.forEach(function(v) {
 			it("should find the largest rectangle in a " + v.polygon + " polygon", function() {
 				var polygon = testPolygons[v.polygon];
-				var rectangle = findLargestRect(polygon, {nTries: 2});
+				var rectangle = findLargestRect(polygon, {nTries: v.tries || 20});
 				should(rectangle[0]).have.property("cx");
 				should(rectangle[0]).have.property("cy");
 				should(rectangle[0]).have.property("width");
