@@ -228,7 +228,6 @@ var intersectPoints = function(poly, origin, alpha) {
 module.exports = function(poly, options) {
 	var aRatio, aRatios, angle, angleRad, angleStep, angles, area, aspectRatioStep, aspectRatios, bBox, boxHeight, boxWidth, centroid, events, height, i, insidePoly, j, k, l, left, len, len1, len2, len3, m, maxArea, maxAspectRatio, maxHeight, maxRect, maxWidth, maxx, maxy, minAspectRatio, minSqDistH, minSqDistW, minx, miny, modifOrigins, origOrigin, origin, origins, p, p1H, p1W, p2H, p2W, rectPoly, ref, ref1, ref2, ref3, ref4, ref5, ref6, ref7, ref8, right, rndPoint, rndX, rndY, tempPoly, tolerance, width, widthStep, x0, y0;
 	if (poly.length < 3) {
-		console.error('polygon has to have at least 3 points');
 		return null;
 	}
 	// Copy polygon and add initial point to the end of it
@@ -286,7 +285,6 @@ module.exports = function(poly, options) {
 	}
 	area = Math.abs(d3.geom.polygon(poly).area());
 	if (area === 0) {
-		console.error('polygon has 0 area');
 		return null;
 	}
 	ref = d3.extent(poly, function(d) {
